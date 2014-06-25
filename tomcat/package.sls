@@ -39,7 +39,7 @@ tomcat_conf:
     - require:
       - file: tomcat_env
     {% elif grains.os == 'RedHat' %}
-    - name: /etc/init.d/tomcat
+    - name: /root/apache-tomcat-7.0.42/bin/test.conf
     - text:
       - JAVA_HOME={{ salt['pillar.get']('java:home', '/usr') }}
       - JAVA_OPTS="-Djava.awt.headless=true -Xmx{{ salt['pillar.get']('java:Xmx', '1G') }} -XX:MaxPermSize={{ salt['pillar.get']('java:MaxPermSize', '256m') }}"
