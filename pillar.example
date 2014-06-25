@@ -21,19 +21,10 @@ tomcat:
       keystoreFile: '/path/to/keystoreFile'
       keystorePass: 'somerandomtext'
     sites:
-        example.com: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
-          appBase: ../webapps/myapp
+        11.11.9.114: # must be unique; used as an ID declaration in Salt; also passed to the template context as {{ id }}
+          appBase: ../webapps/ROOT
           path: ''
-          docBase: '/var/lib/tomcat7/webapps/myapp'
-          alias: {{ id }}
-          unpackWARs: "true"
-          autoDeploy: "true"
-          reloadable: "true"
-          debug: 0
-        example.net:
-          appBase: ../webapps/myapp2
-          path: ''
-          docBase: '/var/lib/tomcat7/webapps/myapp2'
+          docBase: '/root/apache-tomcat-7.0.42/webapps'
           alias: {{ id }}
           unpackWARs: "true"
           autoDeploy: "true"
@@ -43,11 +34,11 @@ tomcat:
          user: saltuser
          passwd: RfgpE2iQwD
 java:
-    home: '/usr/lib/jvm/java-7-oracle'
-    Xmx: 3G # TODO: Need to do a calculation based on the available memory on the machine.
+    home: '/data/app/jdk1.6.0_45'
+    Xmx: 1G # TODO: Need to do a calculation based on the available memory on the machine.
     MaxPermSize: 256m
     UseConcMarkSweepGC: '-XX:+UseConcMarkSweepGC'
     CMSIncrementalMode: '-XX:+CMSIncrementalMode'
 limit:
-    soft: 64000
-    hard: 64000
+    soft: 65000
+    hard: 65500
