@@ -38,6 +38,11 @@ tomcat_conf:
       {% endif %}
     - require:
       - file: tomcat_env
+    {% elif grains.os == 'RedHat' %}
+    - name /root/apache-tomcat-7.0.42/conf
+    - text:
+      - JAVA_HOME={{ salt['pillar.get']('java:home', '/usr') }}
+      - JAVA_OPTS="-Djava.awt.headless=true -Xmx{{ salt['pillar.get']('java:Xmx', '1G') }} -XX:MaxPermSize={{ salt['pillar.get']('java:MaxPermSize', '256m') }}"
     {% else %}
     - name: /etc/default/tomcat{{ tomcat.version }}
     - text:
